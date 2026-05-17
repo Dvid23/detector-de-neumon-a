@@ -39,8 +39,8 @@ html, body, [class*="css"] { font-family: 'Rajdhani', sans-serif; }
 .sub-header {
     text-align: center;
     color: #4a9eff;
-    font-size: 0.95rem;
-    letter-spacing: 5px;
+    font-size: 0.75rem;
+    letter-spacing: 3px;
     text-transform: uppercase;
     margin-bottom: 6px;
     opacity: 0.7;
@@ -150,14 +150,14 @@ if "history" not in st.session_state:
     st.session_state.history = []
 
 # Header
+st.markdown('<p class="sub-header">Universidad Privada Antenor Orrego · Inteligencia Artificial — Principios y Técnicas</p>', unsafe_allow_html=True)
 st.markdown('<h1 class="main-header">🫁 Sistema de Detección de Neumonía</h1>', unsafe_allow_html=True)
 st.markdown('<div class="divider"></div>', unsafe_allow_html=True)
 
 processor, model = load_model()
-st.markdown(
-    '<p class="footer">UNIVERSIDAD PRIVADA ANTENOR ORREGO · INTELIGENCIA ARTIFICIAL — PRINCIPIOS Y TÉCNICAS · UPAO 2026</p>',
-    unsafe_allow_html=True
-)# Sidebar
+st.success("✅ Vision Transformer activo — dima806/chest_xray_pneumonia_detection | Accuracy: 96.08%")
+
+# Sidebar
 with st.sidebar:
     st.markdown("### 👤 Datos del Paciente")
     patient_name = st.text_input("Nombre completo", placeholder="Ej: Juan Pérez")
