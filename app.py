@@ -220,11 +220,32 @@ with col1:
                     )
                     st.metric("Nivel de Confianza", f"{confidence*100:.2f}%")
                     st.markdown("#### Distribución de Probabilidades")
-                    prob_df = pd.DataFrame({
-                        "Clase": list(prob_dict.keys()),
-                        "Probabilidad %": list(prob_dict.values())
-                    })
-                    st.bar_chart(prob_df.set_index("Clase"))
+                    import plotly.graph_objects as go
+                    fig = go.Figure(data=[
+                        go.Bar(
+                            x=list(prob_dict.keys()),
+                            y=list(prob_dict.values()),
+                            marker=dict(
+                                color=["#00ff88" if "NORMAL" in k.upper() else "#ff4444" 
+                                    for k in prob_dict.keys()],
+                                line=dict(color=["#00ff88" if "NORMAL" in k.upper() else "#ff4444" 
+                                                for k in prob_dict.keys()], width=1)
+                            ),
+                            text=[f"{v:.1f}%" for v in prob_dict.values()],
+                            textposition="outside",
+                            textfont=dict(size=18, color="white", family="Orbitron"),
+                        )
+                    ])
+                    fig.update_layout(
+                        paper_bgcolor="rgba(0,0,0,0)",
+                        plot_bgcolor="rgba(0,0,0,0)",
+                        font=dict(color="white", size=14, family="Rajdhani"),
+                        yaxis=dict(showgrid=False, zeroline=False, showticklabels=False),
+                        xaxis=dict(tickfont=dict(size=16, color="#4a9eff")),
+                        margin=dict(t=40, b=20),
+                        height=280,
+                    )
+                    st.plotly_chart(fig, use_container_width=True)
 
                     if patient_name or document_id:
                         st.markdown("#### 👤 Paciente")
