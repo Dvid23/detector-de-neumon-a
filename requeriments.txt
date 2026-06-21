@@ -1,9 +1,8 @@
 streamlit
-transformers[torch]
+transformers
 torch
 torchvision
 pillow
 pandas
 plotly
 numpy
-accelerate
